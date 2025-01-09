@@ -18,5 +18,6 @@ linter:
 analyzer:
   errors:
     missing_required_param: error
+    deprecated_member_use: ignore
   language:
     strict-casts: false

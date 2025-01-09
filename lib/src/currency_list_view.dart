@@ -86,11 +86,8 @@ class _CurrencyListViewState extends State<CurrencyListView> {
   @override
   void initState() {
     _searchController = TextEditingController();
-
     _currencyList = _currencyService.getAll();
-
     _filteredList = <Currency>[];
-
     if (widget.currencyFilter != null) {
       final List<String> currencyFilter =
           widget.currencyFilter!.map((code) => code.toUpperCase()).toList();
@@ -123,19 +120,20 @@ class _CurrencyListViewState extends State<CurrencyListView> {
           child: widget.showSearchField
               ? TextField(
                   controller: _searchController,
-                  decoration: widget.theme?.inputDecoration ?? InputDecoration(
-                    labelText: widget.searchHint ?? "Search",
-                    hintText: widget.searchHint ?? "Search",
-                    prefixIcon: const Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: const Color(0xFF8C98A8).withOpacity(0.2),
+                  decoration: widget.theme?.inputDecoration ??
+                      InputDecoration(
+                        labelText: widget.searchHint ?? "Search",
+                        hintText: widget.searchHint ?? "Search",
+                        prefixIcon: const Icon(Icons.search),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: const Color(0xFF8C98A8).withOpacity(0.2),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
                   onChanged: _filterSearchResults,
                 )
-              : Container(),
+              : const SizedBox.shrink(),
         ),
         Expanded(
           child: ListView(
